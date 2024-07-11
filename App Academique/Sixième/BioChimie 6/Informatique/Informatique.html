@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informatique</title>
+    <link rel="stylesheet" href="../Anglais/Style.css">
+    <link rel="icon" href="../../../Icons/Méthode.KOLUJ.ico" type="image/x-icon">
+    <link rel="shortcuticon" href="../../../Icons/Méthode.KOLUJ.ico" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <span><h1>INFORMATIQUE</h1></span>
+        <span><img src="../../../Icons/logo.JPG" width="120" height="87" alt="Notre logo"></span>
+    </header>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <h2>identité de l'apprenant</h2>
+            <form id="userForm">
+                <div class="input-group">
+                    <label for="username"></label>
+                    <input type="text" id="username" name="username" placeholder="ex. KIYOMBO-NGOY" required>
+                </div>
+                <div class="input-group">
+                    <label for="lastname"></label>
+                    <input type="text" id="lastname" name="lastname" placeholder="ex. FELLY" required>
+                </div>
+                <button type="submit" class="btn-submit">Commencer</button>
+            </form>
+        </div>
+    </div>
+    <button class="refresh-button" id="refreshButton" title="Passer la main">&#x21BA;</button>
+    <div id="Joueur"><span class="JokerName"></span></div>
+    <!-- lien de question -->
+    <div id="overlay">
+        <div id="image-container">
+          <img id="overlay-image" src="" alt="image_demonstrative">
+          <span id="close-button">&times;</span>
+        </div>
+      </div>
+      <!-- lien de question -->
+    <div class="container">
+        <div id="game-content">
+            <div id="question">
+            </div>
+            <div id="options">
+            </div>
+            <button id="submit-button">VALIDER</button>
+        </div>
+        <div id="result">
+        </div>
+        <button id="restart-button">Recommencer</button>         
+    </div>
+    <div id="score-progress">
+        <span class="point-obtenu">Point obtenu : </span><span id="current-score">0</span> <span id="barre"> <span style="color: white; font-weight: bold;">/</span></span> <span id="total-questions">0</span>
+        <br>
+        <span class="pourcentage-obtenu">Pourcentage obtenu : </span><span id="progress-percentage">0%</span><br>
+        <span class="position">Question numéro :</span> <span id="question-position"></span>
+      </div> 
+    <footer>
+    <a href="../MatièresTabs.html" id="Accueil">Retour</a>
+    </footer>
+    <script src="Informatique.js" defer></script>
+    <script src="../../../Rules.js" defer></script>
+</body>
+</html>

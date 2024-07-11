@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Options</title>
+    <link rel="icon" href="./../Icons/Méthode.KOLUJ.ico" type="image/x-icon" />
+    <link
+      rel="shortcuticon"
+      href="./../Icons/Méthode.KOLUJ.ico"
+      type="image/x-icon" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background-color: rgb(0, 1, 29);
+        overflow-y: hidden;
+        overflow-x: hidden;
+      }
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: -300px;
+        width: 290px;
+        height: 62%;
+        background-color: cornflowerblue;
+        padding-top: 50px;
+        transition: left 1.5s ease;
+        border-bottom-right-radius: 25px;
+        z-index: 999;
+      }
+
+      .sidebar a {
+        display: block;
+        padding: 10px 20px;
+        color: #fff;
+        text-decoration: none;
+        margin-top: 20px;
+        text-align: center;
+        font-size: 1.05em;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-family: Georgia, "Times New Roman", Times, serif;
+        filter: drop-shadow(3px 6px 6px rgb(43, 41, 41));
+      }
+      .sidebar a:first-child {
+        margin-top: 70px;
+        font-size: 3em;
+        padding: 0;
+      }
+
+      .sidebar a:hover {
+        color: rgb(0, 0, 0);
+        background-color: rgb(255, 255, 255);
+        border-radius: 3%;
+      }
+      .sidebar a:first-child:hover {
+        color: #00177e;
+        background-color: royalblue;
+      }
+      .sidebar a:last-child {
+        margin-bottom: 0;
+        bottom: 0;
+      }
+
+      .toggle-button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 999;
+        font-size: 24px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      .show {
+        left: 0;
+      }
+
+      .show .toggle-button {
+        transform: rotate(180deg);
+      }
+      #Balls {
+        height: 3em;
+        width: 3em;
+        border: 2px solid rgb(255, 255, 255);
+        position: absolute;
+        border-radius: 60px;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 100px rgb(255, 255, 255);
+        z-index: -1;
+        background-color: rgb(255, 255, 255);
+      }
+      #Balls p {
+        position: fixed;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 23px;
+        border-radius: 50%;
+        color: yellow;
+      }
+
+      /* Styles pour header */
+      header {
+        background-color: black;
+        color: rgba(255, 208, 0, 0.877);
+        padding: 9px;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin-bottom: 1.2px;
+        margin-top: 0;
+        font-weight: bold;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        font-size: 3.65em;
+        text-shadow: 0 0 100px teal;
+        font-family: serif;
+        text-shadow: 0 0 25px rgb(202, 2, 2);
+        user-select: none;
+        transition: 1.5s ease;
+      }
+      h1:hover {
+        transform: scale(1.05);
+      }
+
+      .container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 5px auto;
+        padding: 12px;
+        background-image: linear-gradient(to bottom, #87ceeb, #ff7f00, #8b0000);
+        border-radius: 20px;
+        max-width: 100%;
+        width: 70%;
+        border: 1.5px solid #f7dcff;
+      }
+      .class-link {
+        flex-basis: calc(33.33% - 20px);
+        margin: 10px;
+        text-align: center;
+        text-decoration: none;
+      }
+
+      .class-link img {
+        width: 85%;
+        height: auto;
+        border-radius: 10%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        user-select: none;
+      }
+
+      .class-link img:hover {
+        transform: scale(1.3);
+      }
+
+      footer {
+        position: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+        font-family: "Roboto", sans-serif;
+        padding: 26px;
+        border-top: 0.2px solid rgba(95, 95, 95, 0.411);
+      }
+    
+      #Accueil {
+        position: absolute;
+        color: whitesmoke;
+        text-align: center;
+        font-size: 17.5px;
+        font-weight: bold;
+        text-transform: uppercase;
+        background-color: rgba(151, 0, 0, 0.993);
+        text-decoration: none;
+        padding: 5px;
+        width: 90px;
+        left: 1%;
+        border: 1.2px solid black;
+        font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+      }
+
+      #Accueil:hover {
+        background-color: whitesmoke;
+        box-shadow: 0 0 5px black;
+        color: rgb(199, 143, 0);
+      }
+      /*Téléphone portable*/
+      @media only screen and (max-width: 767px) {
+        * {
+          display: none;
+          background-color: black;
+        }
+      }
+
+      /*Tablette*/
+      @media only screen and (min-width: 768px) and (max-width: 991px) {
+        .sidebar {
+          height: 45%;
+        }
+        .sidebar a {
+          font-size: 1.4em;
+        }
+        .container {
+          width: 90%;
+        }
+      }
+
+      /*Ordi portables*/
+      @media only screen and (min-width: 992px) and (max-width: 1199px) {
+        .sidebar {
+          height: 72%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>OPTIONS</h1>
+    </header>
+    <div class="sidebar" id="sidebar">
+      <a href="./../index.html"
+        ><img
+          src="./../Icons/bouton-metal-icone.png"
+          width="55"
+          height="55"
+          alt="home"
+      /></a>
+      <a href="./../Promotion.html">classes & options</a>
+      <a href="./../Services.html">Services</a>
+      <a href="./../Contact.html">Contact</a>
+      <a href="./../Ethan.html"
+        ><img
+          src="./../Icons/Méthode.KOLUJ.ico"
+          width="50"
+          height="50"
+          alt="Scolar-group" /><br />Groupe scolaire</a
+      >
+    </div>
+    <button class="toggle-button" id="toggle-button">☰</button>
+
+    <div class="container">
+      <a href="./BioChimie 6/MatièresTabs.html" class="class-link"
+        ><img src="../TheOptions/Bio-Chimie.jpg" alt="Bio-Chimie"
+      /></a>
+      <a href="#" class="class-link"
+        ><img src="../TheOptions/Math-Physique.jpg" alt="Math-Physique"
+      /></a>
+      <a href="#" class="class-link"
+        ><img src="../TheOptions/Mécanique.jpg" alt="Mécanique"
+      /></a>
+      <a href="#" class="class-link"
+        ><img src="../TheOptions/Commerciale.jpg" alt="Commerciale"
+      /></a>
+      <a href="#" class="class-link"
+        ><img src="../TheOptions/Littéraire.jpg" alt="Littéraire"
+      /></a>
+      <a href="#" class="class-link"
+        ><img src="../TheOptions/Pédagogie.jpg" alt="Pédagogie"
+      /></a>
+    </div>
+    <div id="Balls"><p>&#127775;</p></div>
+    <footer>
+      <a href="../Promotion.html" id="Accueil">Retour</a>
+    </footer>
+    <script>
+      const toggleButton = document.getElementById("toggle-button");
+      toggleButton.addEventListener("click", function () {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.classList.toggle("show");
+      });
+
+      document.addEventListener("click", function (event) {
+        const sidebar = document.getElementById("sidebar");
+        const toggleButton = document.getElementById("toggle-button");
+
+        // Vérifie si le clic a été effectué à l'intérieur de la sidebar ou sur le bouton de toggle
+        const isClickInsideSidebar = sidebar.contains(event.target);
+        const isClickOnToggleButton = toggleButton.contains(event.target);
+
+        // Si le clic n'est pas à l'intérieur de la sidebar ni sur le bouton de toggle, cache la sidebar
+        if (!isClickInsideSidebar && !isClickOnToggleButton) {
+          sidebar.classList.remove("show");
+        }
+      });
+      const mousemove = document.querySelector("#Balls");
+      window.addEventListener("mousemove", function (e) {
+        mousemove.style.left = e.pageX + "px";
+        mousemove.style.top = e.pageY + "px";
+      });
+
+      const LesClasses = document.querySelectorAll(".container img");
+      LesClasses.forEach((img) => {
+        img.addEventListener("mouseenter", function () {
+          contenant.style.boxShadow = "0 0 10px white";
+        });
+      });
+      const LesClasseslink = document.querySelectorAll(".container a");
+      LesClasseslink.forEach((img) => {
+        img.addEventListener("mouseenter", function () {
+          contenant.style.boxShadow = "0 0 10px white";
+        });
+      });
+      const Accueil = document.getElementById("Accueil");
+      Accueil.addEventListener("mouseenter", () => {
+        mousemove.style.display = "none";
+      });
+      Accueil.addEventListener("mouseleave", () => {
+        mousemove.style.display = "block";
+      });
+    </script>
+  </body>
+</html>

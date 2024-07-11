@@ -1,0 +1,510 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SERVICES</title>
+  <link rel="icon" href="./Icons/Méthode.KOLUJ.ico" type="image/x-icon" />
+  <link rel="shortcuticon" href="./Icons/Méthode.KOLUJ.ico" type="image/x-icon" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background-image: url(./Icons/Contact_Background.jpg);
+      overflow-y: hidden;
+      overflow-x: hidden;
+      width: 100%;
+      height: auto;
+      user-select: none;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -300px;
+      width: 290px;
+      height: 62%;
+      background-color: cornflowerblue;
+      padding-top: 50px;
+      transition: left 1.5s ease;
+      border-bottom-right-radius: 25px;
+      z-index: 999;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 10px 20px;
+      color: #fff;
+      text-decoration: none;
+      margin-top: 20px;
+      text-align: center;
+      font-size: 1.05em;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-family: Georgia, "Times New Roman", Times, serif;
+      filter: drop-shadow(3px 6px 6px rgb(43, 41, 41));
+    }
+
+    .sidebar a:first-child {
+      margin-top: 70px;
+      font-size: 3em;
+      padding: 0;
+    }
+
+    .sidebar a:hover {
+      color: rgb(0, 0, 0);
+      background-color: rgb(255, 255, 255);
+      border-radius: 3%;
+    }
+
+    .sidebar a:first-child:hover {
+      color: #00177e;
+      background-color: royalblue;
+    }
+
+    .sidebar a:last-child {
+      margin-bottom: 0;
+      bottom: 0;
+    }
+
+    .toggle-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 999;
+      font-size: 24px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .show {
+      left: 0;
+    }
+
+    .show .toggle-button {
+      transform: rotate(180deg);
+    }
+
+    #Balls {
+      height: 3em;
+      width: 3em;
+      border: 2px solid rgb(255, 255, 255);
+      position: absolute;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 100px rgb(255, 255, 255);
+      z-index: -1;
+      background-color: rgb(255, 255, 255);
+    }
+
+    #Balls p {
+      position: fixed;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 23px;
+      border-radius: 50%;
+      color: yellow;
+    }
+
+    header {
+      background-color: rgb(26, 26, 26);
+      color: deepskyblue;
+      text-align: center;
+      text-transform: uppercase;
+      width: 100%;
+    }
+
+    @keyframes pulseEffect {
+      0% {
+        transform: scale(0.9);
+      }
+
+      50% {
+        transform: scale(1);
+      }
+
+      100% {
+        transform: scale(0.9);
+      }
+    }
+
+    h1 {
+      animation: pulseEffect 3s infinite alternate;
+      font-weight: bold;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-size: 45px;
+      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgb(0, 1, 34);
+      padding: 21px;
+      border-top: 0.2px solid rgba(95, 95, 95, 0.411);
+    }
+
+    #Etoile {
+      color: rgba(99, 99, 99, 0.568);
+    }
+
+    #Accueil {
+      position: absolute;
+      color: whitesmoke;
+      text-align: center;
+      font-size: 17.5px;
+      font-weight: bold;
+      text-transform: uppercase;
+      background-color: rgba(151, 0, 0, 0.993);
+      text-decoration: none;
+      padding: 5px;
+      width: 90px;
+      left: 0.5%;
+      bottom: 11%;
+      border: 1.2px solid black;
+      font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    }
+
+    #Accueil:hover {
+      background-color: whitesmoke;
+      box-shadow: 0 0 5px black;
+      color: rgb(199, 143, 0);
+    }
+
+    .slider {
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      width: 100%;
+      height: 370px;
+      overflow: hidden;
+      transform: translate(-50%, -50%);
+      display: flex;
+      /* Pour centrer les enfants à l'intérieur si nécessaire */
+      align-items: center;
+      justify-content: center;
+    }
+
+    .item {
+      position: absolute;
+      width: 290px;
+      height: 290px;
+      text-align: justify;
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      transition: 0.5s;
+      left: calc(50% - 180px);
+      top: 0;
+    }
+
+    #next {
+      position: absolute;
+      right: 50px;
+      top: 30%;
+    }
+
+    #prev {
+      position: absolute;
+      left: 50px;
+      top: 30%;
+    }
+
+    h2 {
+      color: goldenrod;
+      filter: drop-shadow(2px 2px 2px rgb(0, 0, 0));
+      text-transform: uppercase;
+      text-align: center;
+      font-weight: bold;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-size: 25px;
+      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+      border-bottom: 0.8px double rgb(70, 70, 70);
+    }
+
+    .item p {
+      color: rgb(0, 0, 63);
+      font-weight: 500;
+      filter: drop-shadow(2px 2px 2px grey);
+      text-align: center;
+      margin-top: 25px;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    #prev,
+    #next {
+      color: firebrick;
+      background: none;
+      border: none;
+      font-size: 6em;
+      font-family: monospace;
+      font-weight: bold;
+      opacity: 0.5;
+      transition: opacity 0.5s;
+    }
+
+    #prev:hover,
+    #next:hover {
+      opacity: 1;
+    }
+
+    .Contacter {
+      position: absolute;
+      color: whitesmoke;
+      text-align: center;
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+      background-color: rgba(151, 0, 0, 0.993);
+      text-decoration: none;
+      padding: 10px;
+      width: 160px;
+      right: 4%;
+      bottom: 10.5%;
+      border: 1.2px solid black;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>PRODUITS & SERVICES</h1>
+  </header>
+  <div class="sidebar" id="sidebar">
+    <a href="index.html"><img src="./Icons/bouton-metal-icone.png" width="55" height="55" alt="home" /></a>
+    <a href="Promotion.html">classes & options</a>
+    <a href="./Services.html">Services</a>
+    <a href="Contact.html">Contact</a>
+    <a href="./Ethan.html"><img src="./Icons/Méthode.KOLUJ.ico" width="50" height="50" alt="Scolar-group" /><br />Groupe scolaire</a>
+  </div>
+  <button class="toggle-button" id="toggle-button">☰</button>
+  <div id="Balls">
+    <p>&#127775;</p>
+  </div>
+
+  <div class="slider">
+    <div class="item">
+      <h2>SITES WEB</h2>
+      <p>
+        Nous créons des sites Internet aux standards internationaux; chez nous
+        vous trouver des sites Web de tous genres, en commençant par les sites
+        statiques jusqu'aux sites dynamiques avec des bases de données
+        <strong>(Sql & noSql)</strong> puissantes à l'instar de : <strong>MongoDB,
+          Mysql et Postgrelsql</strong>.
+      </p>
+    </div>
+
+    <div class="item">
+      <h2>COPYWRITING</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum hic
+        iure enim, rem accusamus odit nemo aspernatur consequuntur vero in
+        veniam fugiat, consectetur officiis voluptatum quidem libero. Sed,
+        dignissimos exercitationem, animi a repellendus tempora recusandae qui
+        consequatur, itaque deleniti nobis.
+      </p>
+
+    </div>
+    <div class="item">
+      <h2>DESIGN & CONCEPTION</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum hic
+        iure enim, rem accusamus odit nemo aspernatur consequuntur vero in
+        veniam fugiat, consectetur officiis voluptatum quidem libero. Sed,
+        dignissimos exercitationem, animi a repellendus tempora recusandae qui
+        consequatur, itaque deleniti nobis.
+      </p>
+    </div>
+    <div class="item">
+      <h2>Création d'applications</h2>
+      <p>
+        Nous concevons pour vous des applications <strong>Android</strong>,
+        des applications <strong>IOS</strong> ainsi que des applications
+        <strong>hybrides</strong> sans oublier les différents systèmes
+        d'exploitation <strong>(Windows, macOS et Linux)</strong> pour
+        lesquels nous créons des applications de bureau moderne.
+      </p>
+    </div>
+    <div class="item">
+      <h2>Maintenance machines & Système</h2>
+      <p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum hic
+        iure enim, rem accusamus odit nemo aspernatur consequuntur vero in
+        veniam fugiat, consectetur officiis voluptatum quidem libero. Sed,
+        dignissimos exercitationem, animi a repellendus tempora recusandae
+        qui
+        consequatur, itaque deleniti nobis.
+      </p>
+      </p>
+    </div>
+    <div class="item">
+      <h2>SITES WEB</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum hic
+        iure enim, rem accusamus odit nemo aspernatur consequuntur vero in
+        veniam fugiat, consectetur officiis voluptatum quidem libero. Sed,
+        dignissimos exercitationem, animi a repellendus tempora recusandae qui
+        consequatur, itaque deleniti nobis.
+      </p>
+    </div>
+    <div class="item">
+      <h2>SITES WEB</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum hic
+        iure enim, rem accusamus odit nemo aspernatur consequuntur vero in
+        veniam fugiat, consectetur officiis voluptatum quidem libero. Sed,
+        dignissimos exercitationem, animi a repellendus tempora recusandae qui
+        consequatur, itaque deleniti nobis.
+      </p>
+    </div>
+    <div class="item">
+      <h2>SITES WEB</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum hic
+        iure enim, rem accusamus odit nemo aspernatur consequuntur vero in
+        veniam fugiat, consectetur officiis voluptatum quidem libero. Sed,
+        dignissimos exercitationem, animi a repellendus tempora recusandae qui
+        consequatur, itaque deleniti nobis.
+      </p>
+    </div>
+    <div class="item">
+      <h2>SITES WEB</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum hic
+        iure enim, rem accusamus odit nemo aspernatur consequuntur vero in
+        veniam fugiat, consectetur officiis voluptatum quidem libero. Sed,
+        dignissimos exercitationem, animi a repellendus tempora recusandae qui
+        consequatur, itaque deleniti nobis.
+      </p>
+    </div>
+    <button id="next">></button>
+    <button id="prev"><</button>
+  </div>
+
+  <footer>
+    <a href="index.html" id="Accueil">Accueil</a>
+    <span><a href="./Contact.html" class="Contacter">Commande</a></span>
+  </footer>
+  <script>
+    const mousemove = document.querySelector("#Balls");
+    window.addEventListener("mousemove", function (e) {
+      mousemove.style.left = e.pageX + "px";
+      mousemove.style.top = e.pageY + "px";
+    });
+    const Accueil = document.getElementById("Accueil");
+    Accueil.addEventListener("mouseenter", () => {
+      mousemove.style.display = "none";
+    });
+    Accueil.addEventListener("mouseleave", () => {
+      mousemove.style.display = "block";
+    });
+
+    const Contacter = document.querySelector(".Contacter");
+    Contacter.addEventListener("mouseenter", () => {
+      mousemove.style.visibility = "hidden";
+    })
+    Contacter.addEventListener("mouseleave", () => {
+      mousemove.style.visibility = "visible";
+    })
+    const toggleButton = document.getElementById("toggle-button");
+    toggleButton.addEventListener("click", function () {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("show");
+    });
+
+    document.addEventListener("click", function (event) {
+      const sidebar = document.getElementById("sidebar");
+      const toggleButton = document.getElementById("toggle-button");
+
+      // Vérifie si le clic a été effectué à l'intérieur de la sidebar ou sur le bouton de toggle
+      const isClickInsideSidebar = sidebar.contains(event.target);
+      const isClickOnToggleButton = toggleButton.contains(event.target);
+
+      // Si le clic n'est pas à l'intérieur de la sidebar ni sur le bouton de toggle, cache la sidebar
+      if (!isClickInsideSidebar && !isClickOnToggleButton) {
+        sidebar.classList.remove("show");
+      }
+    });
+
+    let items = document.querySelectorAll(".slider .item");
+    let active = 3;
+
+    function loadShow() {
+      items.forEach((item, index) => {
+        item.style.transform = "";
+        item.style.zIndex = "";
+        item.style.filter = "";
+        item.style.opacity = "";
+      });
+
+      items[active].style.transform = `none`;
+      items[active].style.zIndex = 1;
+      items[active].style.filter = "none";
+      items[active].style.opacity = 1;
+
+      let stt = 0;
+      for (let i = 1; i <= Math.floor(items.length / 2); i++) {
+        let nextIndex = (active + i) % items.length;
+        let prevIndex = (active - i + items.length) % items.length;
+
+        items[nextIndex].style.transform = `translateX(${120 * i}px) scale(${1 - 0.2 * i}) perspective(16px) rotateY(-1deg)`;
+        items[nextIndex].style.zIndex = -i;
+        items[nextIndex].style.filter = "blur(5px)";
+        items[nextIndex].style.opacity = i > 2 ? 0 : 0.6;
+
+        items[prevIndex].style.transform = `translateX(${-120 * i}px) scale(${1 - 0.2 * i}) perspective(16px) rotateY(1deg)`;
+        items[prevIndex].style.zIndex = -i;
+        items[prevIndex].style.filter = "blur(5px)";
+        items[prevIndex].style.opacity = i > 2 ? 0 : 0.6;
+      }
+    }
+
+    loadShow();
+
+    let next = document.getElementById("next");
+    let prev = document.getElementById("prev");
+
+    next.onclick = function () {
+      active = (active + 1) % items.length;
+      loadShow();
+    };
+
+    prev.onclick = function () {
+      active = (active - 1 + items.length) % items.length;
+      loadShow();
+    };
+
+    const Next = document.getElementById("next");
+    Next.addEventListener("mouseenter", () => {
+      mousemove.style.display = "none";
+    });
+    Next.addEventListener("mouseleave", () => {
+      mousemove.style.display = "block";
+    });
+
+    const Prev = document.getElementById("prev");
+    Prev.addEventListener("mouseenter", () => {
+      mousemove.style.display = "none";
+    });
+    Prev.addEventListener("mouseleave", () => {
+      mousemove.style.display = "block";
+    });
+
+  </script>
+</body>
+
+</html>

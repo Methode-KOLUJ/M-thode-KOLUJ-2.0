@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact</title>
+    <link rel="icon" href="./Icons/Méthode.KOLUJ.ico" type="image/x-icon" />
+    <link
+      rel="shortcuticon"
+      href="./Icons/Méthode.KOLUJ.ico"
+      type="image/x-icon" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background-image: url(./Icons/Service_Background.jpg);
+        background-color: rgb(14, 7, 63);
+        overflow-y: hidden;
+        overflow-x: hidden;
+        width: 100%;
+        height: auto;
+        user-select: none;
+      }
+     
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: -260px;
+        width: 250px;
+        height: 62%;
+        background-color: cornflowerblue;
+        padding-top: 50px;
+        transition: left 2.5s ease;
+        border-bottom-right-radius: 25px;
+        z-index: 999;
+      }
+
+      .sidebar a {
+        display: block;
+        padding: 10px 20px;
+        color: #fff;
+        text-decoration: none;
+        margin-top: 20px;
+        text-align: center;
+        font-size: 1.05em;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-family: Georgia, "Times New Roman", Times, serif;
+        filter: drop-shadow(3px 6px 6px rgb(43, 41, 41));
+      }
+      .sidebar a:first-child {
+        margin-top: 70px;
+        font-size: 3em;
+        padding: 0;
+      }
+
+      .sidebar a:hover {
+        color: rgb(0, 0, 0);
+        background-color: rgb(255, 255, 255);
+        border-radius: 3%;
+      }
+      .sidebar a:first-child:hover {
+        color: #00177e;
+        background-color: royalblue;
+      }
+      .sidebar a:last-child {
+        margin-bottom: 0;
+        bottom: 0;
+      }
+
+      .toggle-button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 999;
+        font-size: 24px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      .show {
+        left: 0;
+      }
+
+      .show .toggle-button {
+        transform: rotate(180deg);
+      }
+
+      #Balls {
+        height: 3em;
+        width: 3em;
+        border: 2px solid rgb(255, 255, 255);
+        position: absolute;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 100px rgb(255, 255, 255);
+        z-index: -1;
+        background-color: rgb(255, 255, 255);
+      }
+
+      #Balls p {
+        position: fixed;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 23px;
+        border-radius: 50%;
+        color: yellow;
+      }
+
+      header {
+        background-color: rgb(26, 26, 26);
+        color: deepskyblue;
+        padding: 5px;
+        text-align: center;
+        text-transform: uppercase;
+      }
+      @keyframes pulseEffect {
+        0% {
+          transform: scale(0.9);
+        }
+        50% {
+          transform: scale(1);
+        }
+        100% {
+          transform: scale(0.9);
+        }
+      }
+
+      h1 {
+        animation: pulseEffect 3s infinite alternate;
+        font-weight: bold;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        font-size: 36px;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+      }
+
+      main {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      form {
+        display: block;
+        margin: 0 auto;
+        top: 50%;
+        left: 50%;
+        background-color: transparent;
+        backdrop-filter: blur(80px);
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.651);
+        margin-bottom: 5%;
+      }
+
+      form {
+        max-width: 400px;
+        width: 100%;
+      }
+
+      form div {
+        margin-bottom: 20px;
+      }
+
+      form label {
+        display: block;
+        font-weight: bold;
+        color: rgb(184, 214, 213);
+        text-transform: uppercase;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin-top: -10px;
+      }
+
+      form input[type="text"],
+      form input[type="email"],
+      form input[type="tel"],
+      form textarea {
+        width: 97%;
+        padding: 10px;
+        border: 1.5px solid #ccc;
+        border-radius: 5px;
+        background-color: transparent;
+        color: white;
+        font-weight: bold;
+        font-size: 14px;
+      }
+
+      form textarea {
+        border: 1.5px solid #ccc;
+        resize: vertical;
+        background-color: transparent;
+        color: rgb(255, 255, 255);
+      }
+
+      form button {
+        padding: 10px 20px;
+        background-color: #333;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+      ::placeholder {
+        color: rgb(39, 38, 30);
+        text-align: center;
+        font-weight: bold;
+      }
+
+      form textarea::placeholder:last-child {
+        text-transform: uppercase;
+      }
+
+      form button:hover {
+        background-color: #555;
+      }
+      footer {
+        position: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgb(0, 1, 34);
+        color: #fff;
+        text-align: center;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+        font-family: "Roboto", sans-serif;
+        padding: 21px;
+        border-top: 0.2px solid rgba(95, 95, 95, 0.411);
+      }
+      footer p {
+        padding: 3.5px;
+        margin: 0;
+        font-size: 14px;
+        color: rgba(192, 192, 192, 0.651);
+        font-weight: bold;
+      }
+      footer p:first-child {
+        font-size: 13px;
+        color: rgb(255, 255, 255);
+        font-weight: 900;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+      }
+      footer p:nth-child(2) {
+        font-size: 14px;
+        color: peachpuff;
+        font-weight: bold;
+      }
+      footer p:last-child {
+        font-size: 14px;
+        color: rgba(192, 192, 192, 0.651);
+        font-weight: bold;
+      }
+      footer p a {
+        text-decoration: none;
+        list-style: none;
+        color: rgba(30, 143, 255, 0.692);
+        filter: drop-shadow(2px 2px 1px rgb(46, 46, 46));
+      }
+      footer p a:hover {
+        border-bottom: 0.5px double deepskyblue;
+      }
+      #Etoile {
+        color: rgba(99, 99, 99, 0.568);
+      }
+
+      #Accueil {
+        position: absolute;
+        color: whitesmoke;
+        text-align: center;
+        font-size: 17.5px;
+        font-weight: bold;
+        text-transform: uppercase;
+        background-color: rgba(151, 0, 0, 0.993);
+        text-decoration: none;
+        padding: 5px;
+        width: 90px;
+        left: 0.5%;
+        bottom: 11%;
+        border: 1.2px solid black;
+        font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+      }
+
+      #Accueil:hover {
+        background-color: whitesmoke;
+        box-shadow: 0 0 5px black;
+        color: rgb(199, 143, 0);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Contacts & Besoins</h1>
+    </header>
+    <div class="sidebar" id="sidebar">
+      <a href="Index.html"
+        ><img
+          src="./Icons/bouton-metal-icone.png"
+          width="55"
+          height="55"
+          alt="home"
+      /></a>
+      <a href="Promotion.html">classes & options</a>
+      <a href="./Services.html">Services</a>
+      <a href="Contact.html">Contact</a>
+      <a href="./Ethan.html"
+        ><img
+          src="./Icons/Méthode.KOLUJ.ico"
+          width="50"
+          height="50"
+          alt="Scolar-group" /><br />MESSAGERIE</a
+      >
+    </div>
+    <button class="toggle-button" id="toggle-button">☰</button>
+    <main>
+      <form
+        action="https://api.web3forms.com/submit"
+        method="POST"
+        id="contact-form">
+        <input
+          type="hidden"
+          name="access_key"
+          value="f6265455-b80f-4870-9f43-b29ce856e8d3" />
+        <div>
+          <label for="nom">Noms</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required />
+        </div>
+        <div>
+          <label for="telephone">Téléphone :</label>
+          <input
+            type="tel"
+            id="telephone"
+            name="telephone"
+          />
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required />
+        </div>
+        <div>
+          <label for="message">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            placeholder="Un message de votre part nous ferait énormément plaisir !"
+            required></textarea>
+        </div>
+        <button type="submit">Envoyer</button>
+      </form>
+    </main>
+    <div id="Balls"><p>&#127775;</p></div>
+    <footer>
+    <a href="Index.html" id="Accueil">Accueil</a>
+    </footer>
+    <script>
+      const mousemove = document.querySelector("#Balls");
+      window.addEventListener("mousemove", function (e) {
+        mousemove.style.left = e.pageX + "px";
+        mousemove.style.top = e.pageY + "px";
+      });
+      const Accueil = document.getElementById("Accueil");
+      Accueil.addEventListener("mouseenter", () => {
+        mousemove.style.display = "none";
+      });
+      Accueil.addEventListener("mouseleave", () => {
+        mousemove.style.display = "block";
+      });
+
+      const toggleButton = document.getElementById("toggle-button");
+      toggleButton.addEventListener("click", function () {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.classList.toggle("show");
+      });
+
+      document.addEventListener("click", function (event) {
+        const sidebar = document.getElementById("sidebar");
+        const toggleButton = document.getElementById("toggle-button");
+
+        // Vérifie si le clic a été effectué à l'intérieur de la sidebar ou sur le bouton de toggle
+        const isClickInsideSidebar = sidebar.contains(event.target);
+        const isClickOnToggleButton = toggleButton.contains(event.target);
+
+        // Si le clic n'est pas à l'intérieur de la sidebar ni sur le bouton de toggle, cache la sidebar
+        if (!isClickInsideSidebar && !isClickOnToggleButton) {
+          sidebar.classList.remove("show");
+        }
+      });
+    </script>
+  </body>
+</html>
